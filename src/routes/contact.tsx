@@ -15,7 +15,7 @@ export const Route = createFileRoute("/contact")({
     <>
       <SectionHero
         eyebrow="Contact"
-        title='Offrez-vous une <em class="italic text-gradient-rose">parenthèse</em> d\'exception.'
+        title={'Offrez-vous une <em class="italic text-gradient-rose">parenthèse</em> d\'exception.'}
         subtitle="Notre équipe vous accueille du lundi au samedi à Nador. Réponse garantie sous 24h."
       />
       <Appointment withHeader={false} />
