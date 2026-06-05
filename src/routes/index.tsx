@@ -1,32 +1,16 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Navbar } from "@/components/site/Navbar";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Hero } from "@/components/site/Hero";
 import { About } from "@/components/site/About";
 import { Services } from "@/components/site/Services";
-import { BeforeAfter } from "@/components/site/BeforeAfter";
-import { Reels } from "@/components/site/Reels";
 import { Testimonials } from "@/components/site/Testimonials";
-import { Appointment } from "@/components/site/Appointment";
-import { Instagram } from "@/components/site/Instagram";
-import { Footer } from "@/components/site/Footer";
-import { WhatsAppFab } from "@/components/site/WhatsAppFab";
-import { Loader } from "@/components/site/Loader";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Centre Esthétique Nassim Bentayeb · Médecine esthétique premium" },
-      { name: "description", content: "Centre esthétique premium à Paris : hydrafacial, laser, soins du visage, botox, anti-âge. Prenez rendez-vous." },
-      { property: "og:title", content: "Centre Esthétique Nassim Bentayeb" },
-      { property: "og:description", content: "Révélez votre beauté naturelle. Soins du visage, laser, hydrafacial et bien-être premium." },
-    ],
-    links: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap",
-      },
+      { title: "Centre Esthétique Nassim Bentayeb · Nador" },
+      { name: "description", content: "Centre esthétique premium à Nador. Hydrafacial, laser, soins du visage, botox, anti-âge. Prenez rendez-vous." },
+      { property: "og:title", content: "Centre Esthétique Nassim Bentayeb · Nador" },
+      { property: "og:description", content: "Révélez votre beauté naturelle. Médecine esthétique premium à Nador." },
     ],
   }),
   component: Index,
@@ -35,20 +19,24 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <>
-      <Loader />
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Services />
-        <BeforeAfter />
-        <Reels />
-        <Testimonials />
-        <Appointment />
-        <Instagram />
-      </main>
-      <Footer />
-      <WhatsAppFab />
+      <Hero />
+      <About />
+      <Services />
+      <Testimonials withHeader={true} />
+      <section className="py-24 bg-gradient-rose text-white text-center">
+        <div className="container-luxe max-w-2xl">
+          <h2 className="text-4xl md:text-5xl text-white">Prête à révéler votre éclat ?</h2>
+          <p className="mt-6 text-white/85 text-lg">
+            Réservez votre consultation personnalisée et offrez-vous un moment d'exception.
+          </p>
+          <Link
+            to="/contact"
+            className="mt-8 inline-flex items-center gap-3 rounded-full bg-white text-rose px-9 py-4 text-xs uppercase tracking-[0.25em] hover:shadow-glow transition-all duration-500"
+          >
+            Prendre rendez-vous
+          </Link>
+        </div>
+      </section>
     </>
   );
 }
