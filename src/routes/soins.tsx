@@ -15,7 +15,7 @@ export const Route = createFileRoute("/soins")({
     <>
       <SectionHero
         eyebrow="Nos soins"
-        title='L\'art du soin, élevé au rang d\'<em class="italic text-gradient-rose">expérience</em>.'
+        title={'L\'art du soin, élevé au rang d\'<em class="italic text-gradient-rose">expérience</em>.'}
         subtitle="Une carte de soins premium pensée pour révéler la singularité de chaque peau."
       />
       <Services withHeader={false} />
