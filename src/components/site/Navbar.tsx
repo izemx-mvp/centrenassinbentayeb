@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 
 const links = [
-  { href: "#about", label: "À propos" },
-  { href: "#services", label: "Soins" },
-  { href: "#results", label: "Résultats" },
-  { href: "#videos", label: "Vidéos" },
-  { href: "#testimonials", label: "Avis" },
-  { href: "#contact", label: "Contact" },
-];
+  { to: "/", label: "Accueil" },
+  { to: "/a-propos", label: "À propos" },
+  { to: "/soins", label: "Soins" },
+  { to: "/resultats", label: "Résultats" },
+  { to: "/galerie", label: "Galerie" },
+  { to: "/avis", label: "Avis" },
+  { to: "/contact", label: "Contact" },
+] as const;
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,33 +24,35 @@ export function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass shadow-soft py-3" : "py-6 bg-transparent"
+        scrolled ? "glass shadow-soft py-3" : "py-5 bg-transparent"
       }`}
     >
       <div className="container-luxe flex items-center justify-between">
-        <a href="#top" className="group flex flex-col leading-none">
+        <Link to="/" className="flex flex-col leading-none">
           <span className="font-display text-xl tracking-wide text-ink">Nassim Bentayeb</span>
-          <span className="text-[10px] uppercase tracking-[0.3em] text-gold mt-0.5">
-            Centre Esthétique
+          <span className="text-[10px] uppercase tracking-[0.3em] text-gradient-gold mt-0.5 font-medium">
+            Centre Esthétique · Nador
           </span>
-        </a>
-        <nav className="hidden lg:flex items-center gap-9">
+        </Link>
+        <nav className="hidden lg:flex items-center gap-7">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="relative text-sm text-foreground/80 hover:text-foreground transition-colors after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-gold after:transition-all hover:after:w-full"
+            <Link
+              key={l.to}
+              to={l.to}
+              activeOptions={{ exact: true }}
+              activeProps={{ className: "text-rose" }}
+              className="relative text-sm text-foreground/80 hover:text-rose transition-colors after:absolute after:left-0 after:-bottom-1.5 after:h-px after:w-0 after:bg-gradient-rose after:transition-all hover:after:w-full data-[status=active]:after:w-full"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
         </nav>
-        <a
-          href="#contact"
-          className="hidden lg:inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-xs uppercase tracking-[0.2em] text-primary-foreground hover:bg-gold hover:text-ink transition-all duration-500"
+        <Link
+          to="/contact"
+          className="hidden lg:inline-flex items-center gap-2 rounded-full bg-gradient-rose px-6 py-2.5 text-xs uppercase tracking-[0.2em] text-white hover:shadow-glow transition-all duration-500"
         >
           Rendez-vous
-        </a>
+        </Link>
         <button
           aria-label="Menu"
           className="lg:hidden flex flex-col gap-1.5 p-2"
@@ -63,22 +67,22 @@ export function Navbar() {
         <div className="lg:hidden glass border-t border-border mt-3 animate-fade-in">
           <div className="container-luxe py-6 flex flex-col gap-4">
             {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
+              <Link
+                key={l.to}
+                to={l.to}
                 onClick={() => setOpen(false)}
                 className="text-sm py-2 border-b border-border/50"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               onClick={() => setOpen(false)}
-              className="mt-2 inline-flex justify-center rounded-full bg-primary px-6 py-3 text-xs uppercase tracking-[0.2em] text-primary-foreground"
+              className="mt-2 inline-flex justify-center rounded-full bg-gradient-rose px-6 py-3 text-xs uppercase tracking-[0.2em] text-white"
             >
               Prendre rendez-vous
-            </a>
+            </Link>
           </div>
         </div>
       )}
